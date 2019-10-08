@@ -101,43 +101,52 @@ var strOneIsPangram: Bool = false
 var strTwoIsPangram: Bool = false
 var strThreeIsPangram: Bool = false
 
-var alphabets = "abcdefghijklmnopqrstuvwxyz"
+var alphabets: Set<Character> = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
-var str1: Set<Character> = Set(strOne)
-var str2: Set<Character> = Set(strTwo)
-var str3: Set<Character> = Set(strThree)
+var trimmedStr1 = ""
+for char in strOne {
+    if char.isPunctuation || char.isWhitespace { continue }
+    trimmedStr1 += String(char)
+}
 
-for word in str2 {
-    for char in alphabets {
-        if char == word {
-        strTwoIsPangram = true
-        } else {
-        strTwoIsPangram = false
-        }
-    }
+var setTrim = Set(trimmedStr1.lowercased())
+
+if setTrim == alphabets {
+    strOneIsPangram = true
+} else {
+    strOneIsPangram = false
+}
+print(strOneIsPangram)
+
+var trimmedStr2 = ""
+for char2 in strTwo {
+    if char2.isPunctuation || char2.isWhitespace { continue }
+    trimmedStr2 += String(char2)
+}
+
+var setTrim2 = Set(trimmedStr2.lowercased())
+
+if setTrim2 == alphabets {
+    strTwoIsPangram = true
+} else {
+    strTwoIsPangram = false
 }
 print(strTwoIsPangram)
 
+var trimmedStr3 = ""
+for char3 in strThree {
+    if char3.isPunctuation || char3.isWhitespace { continue }
+    trimmedStr3 += String(char3)
+}
 
-for word in str1 {
-    for char in alphabets {
-        if char == word {
-        strOneIsPangram = true
-        } else {
-    strOneIsPangram = false
+var setTrim3 = Set(trimmedStr3.lowercased())
+
+if setTrim3 == alphabets {
+    strThreeIsPangram = true
+} else {
+    strThreeIsPangram = false
 }
-}
-}
-print(strOneIsPangram)
-//
-//for char in alphabets {
-//    for word in str3 {
-//        if word == char {
-//        strThreeIsPangram = true
-//    }
-//}
-//}
-//print(strThreeIsPangram)
+print(strThreeIsPangram)
 
 assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
 assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
