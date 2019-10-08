@@ -10,9 +10,11 @@ let numbers = [1,1,2,4,4,4,6,6,7,8]
 
 var numbersWithNoDuplicates = [Int]()
 
-// Your code here
+var setWithNoDuplicates: Set<Int> = Set(numbers)
+numbersWithNoDuplicates = Array(setWithNoDuplicates).sorted()
+print(numbersWithNoDuplicates.sorted())
 
-//assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
+assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
 
 // Questions Two
 
@@ -21,8 +23,7 @@ var numbersWithNoDuplicates = [Int]()
 let scores = [1, 77, 83, 32, 77, 77, 83, 32, 99]
 
 var scoresThatAppearOnce = [Int]()
-
-// Your code here
+var scoreSet: Set<Int> = Set(scores)
 
 //assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
 
@@ -37,9 +38,12 @@ let arrTwo = [3,4,5,6,7]
 
 var arrThree: [Int] = []
 
-// Your code here
+var oneSet: Set<Int> = Set(arrOne)
+var twoSet: Set<Int> = Set(arrTwo)
 
-//assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
+arrThree = Array(oneSet.union(twoSet)).sorted()
+
+assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
 
 // b.
 
@@ -50,9 +54,12 @@ let arrFive = [3,4,5,6,7]
 
 var arrSix: [Int] = []
 
-// Your code here
+var fourSet: Set<Int> = Set(arrFour)
+var fiveSet: Set<Int> = Set(arrFive)
 
-//assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
+arrSix = Array(fourSet.intersection(fiveSet)).sorted()
+
+assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
 
 // Question Four
 
@@ -65,12 +72,22 @@ let numsFour = [1, 3, 4, 5, 6, 7, 9]
 
 var allNumsWithNoDuplicates: [Int] = []
 
-// Your code here
+var set1: Set<Int> = Set(numsOne)
+var set2: Set<Int> = Set(numsTwo)
+var set3: Set<Int> = Set(numsThree)
+var set4: Set<Int> = Set(numsFour)
 
-//assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
+var totalSet: Set<Int> = set1.union(set2)
+totalSet = totalSet.union(set3)
+totalSet = totalSet.union(set4)
+
+allNumsWithNoDuplicates = Array(totalSet).sorted()
+
+assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
 
 
 // Question Five
+
 
 // Determine if a String is a pangram. A pangram is a string that contains every letter of the alphabet at least once.
 
@@ -84,11 +101,47 @@ var strOneIsPangram: Bool = false
 var strTwoIsPangram: Bool = false
 var strThreeIsPangram: Bool = false
 
-// Your code here
+var alphabets = "abcdefghijklmnopqrstuvwxyz"
 
-//assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
-//assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
-//assert(strThreeIsPangram == true, "Was expecting false, but got \(strThreeIsPangram)")
+var str1: Set<Character> = Set(strOne)
+var str2: Set<Character> = Set(strTwo)
+var str3: Set<Character> = Set(strThree)
+
+for word in str2 {
+    for char in alphabets {
+        if char == word {
+        strTwoIsPangram = true
+        } else {
+        strTwoIsPangram = false
+        }
+    }
+}
+print(strTwoIsPangram)
+
+
+for word in str1 {
+    for char in alphabets {
+        if char == word {
+        strOneIsPangram = true
+        } else {
+    strOneIsPangram = false
+}
+}
+}
+print(strOneIsPangram)
+//
+//for char in alphabets {
+//    for word in str3 {
+//        if word == char {
+//        strThreeIsPangram = true
+//    }
+//}
+//}
+//print(strThreeIsPangram)
+
+assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
+assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
+assert(strThreeIsPangram == true, "Was expecting false, but got \(strThreeIsPangram)")
 
 
 
