@@ -23,9 +23,22 @@ assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], b
 let scores = [1, 77, 83, 32, 77, 77, 83, 32, 99]
 
 var scoresThatAppearOnce = [Int]()
-var scoreSet: Set<Int> = Set(scores)
+var scoresThatAppearTwice = [Int]()
 
-//assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
+for num in scores {
+  if !scoresThatAppearTwice.contains(num) {
+      scoresThatAppearOnce.append(num)
+      scoresThatAppearTwice.append(num)
+  } else {
+      if let index = scoresThatAppearOnce.firstIndex(of: num) {
+          scoresThatAppearOnce.remove(at: index)
+      }
+  }
+}
+print(scoresThatAppearOnce)
+
+
+assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
 
 // Question Three
 
@@ -110,13 +123,13 @@ for char in strOne {
 }
 
 var setTrim = Set(trimmedStr1.lowercased())
-
 if setTrim == alphabets {
     strOneIsPangram = true
 } else {
     strOneIsPangram = false
 }
 print(strOneIsPangram)
+
 
 var trimmedStr2 = ""
 for char2 in strTwo {
@@ -125,7 +138,6 @@ for char2 in strTwo {
 }
 
 var setTrim2 = Set(trimmedStr2.lowercased())
-
 if setTrim2 == alphabets {
     strTwoIsPangram = true
 } else {
@@ -140,7 +152,6 @@ for char3 in strThree {
 }
 
 var setTrim3 = Set(trimmedStr3.lowercased())
-
 if setTrim3 == alphabets {
     strThreeIsPangram = true
 } else {
